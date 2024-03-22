@@ -1,0 +1,52 @@
+
+
+
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  position: fixed;
+  width: 100%;
+  padding: 30px;
+  font-family: "Roboto Condensed", sans-serif;
+  
+  ul{
+    margin-right: 40px;
+    li{
+      display: inline;
+      list-style: none;
+      margin: 30px;
+      
+      a{
+        display: inline-block;
+        color: #000000;
+        text-decoration: none;  
+      }
+      a:after {
+        content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #000;
+        transition: width .2s;
+      }
+      a:hover:after {     
+        width: 100%;
+      }
+      
+    }
+
+  }
+  .navLogo{
+    margin-left: 40px;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    list-style: none;
+    
+  }
+
+
+}
+

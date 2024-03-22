@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  position: fixed;
+  width: 100%;
+  padding: 30px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.nav ul {
+  margin-right: 40px;
+}
+.nav ul li {
+  display: inline;
+  list-style: none;
+  margin: 30px;
+}
+.nav ul li a {
+  display: inline-block;
+  color: #000000;
+  text-decoration: none;
+}
+.nav ul li a:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.2s;
+}
+.nav ul li a:hover:after {
+  width: 100%;
+}
+.nav .navLogo {
+  margin-left: 40px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2em;
+  list-style: none;
+}
+
+.main {
+  background-image: linear-gradient(to right top, #a8909e, #ac92a9, #ac95b7, #a899c5, #9e9fd4, #91a9e3, #80b4ef, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+.main .logo {
+  width: 45vw;
+}
+.main .logo img {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+}
+.main .presentation {
+  width: 50vw;
+  margin: 0%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.main .presentation h3 {
+  font-size: 2rem;
+  font-style: italic;
+  font-family: "Roboto Condensed", sans-serif;
+  color: white;
+}
+.main .presentation h2 {
+  font-size: 3.2rem;
+  color: rgba(0, 0, 0, 0.722);
+  font-family: "Roboto Condensed", sans-serif;
+}
+.main .presentation h2 span {
+  color: black;
+}
+
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+/*# sourceMappingURL=index.css.map */
