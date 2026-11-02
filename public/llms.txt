@@ -1,0 +1,11 @@
+# Aziz Ben Amor
+
+> Aziz Ben Amor, full-stack and AI developer in Paris. SaaS, apps and AI agents. Open to an AI internship from April 2027.
+
+I’m Aziz, a full-stack developer in Paris. I build SaaS products, apps and AI agents that actually ship, from FastAPI backends to LangChain and MCP agents that automate real work. Third-year student at EFREI, looking for an AI internship from April 2027. Off screen, I DJ and play padel.
+
+- Site: https://lebasupreme.github.io/
+- LinkedIn: https://www.linkedin.com/in/aziz-ben-amor
+- GitHub: https://github.com/LeBASupreme
+- Email: mailto:aziz.ben-amor@outlook.fr
+- Location: Paris, France

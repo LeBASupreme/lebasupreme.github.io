@@ -1,47 +1,19 @@
 import { useRef } from "react";
 import { ABOUT } from "../content";
 import { useParisTime } from "../hooks/useParisTime";
-import { gsap, SplitText, useGSAP, MOTION_OK } from "../motion";
+import { appear, gsap, useGSAP, MOTION_OK } from "../motion";
 
 export function About() {
   const root = useRef<HTMLElement>(null);
-  const copy = useRef<HTMLParagraphElement>(null);
   const time = useParisTime();
 
   useGSAP(
     () => {
-      const paragraph = copy.current;
-      if (!paragraph) return;
-
+      const section = root.current;
+      if (!section) return;
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        const split = SplitText.create(paragraph, { type: "words", aria: "auto" });
-        const muted = tokenColor("--text-muted");
-        const strong = tokenColor("--text-strong");
-        gsap.fromTo(
-          split.words,
-          { color: muted },
-          {
-            color: strong,
-            ease: "none",
-            stagger: 0.04,
-            scrollTrigger: {
-              trigger: paragraph,
-              start: "top 78%",
-              end: "bottom 58%",
-              scrub: true,
-            },
-          },
-        );
-
-        gsap.from(".hairline", {
-          scaleX: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".hairline", start: "top 92%" },
-        });
-
-        return () => split.revert();
+        appear(section, ".about-copy, .facts");
       });
     },
     { scope: root },
@@ -52,7 +24,7 @@ export function About() {
       <div className="hairline" />
       <div className="about-grid">
         <h2 className="kicker">(About)</h2>
-        <p className="about-copy" ref={copy}>
+        <p className="about-copy">
           {ABOUT}
         </p>
       </div>
@@ -85,13 +57,4 @@ export function About() {
       </ul>
     </section>
   );
-}
-
-function tokenColor(variable: string) {
-  const probe = document.createElement("i");
-  probe.style.color = `var(${variable})`;
-  document.body.appendChild(probe);
-  const value = getComputedStyle(probe).color;
-  probe.remove();
-  return value;
 }

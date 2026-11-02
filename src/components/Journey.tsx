@@ -1,92 +1,76 @@
 import { useRef } from "react";
 import { JOURNEY } from "../content";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 import { DESKTOP, gsap, useGSAP, MOTION_OK } from "../motion";
-import { getLenis } from "../scroll-bus";
 
 export function Journey() {
   const root = useRef<HTMLElement>(null);
-  const pin = useRef<HTMLDivElement>(null);
-  const track = useRef<HTMLUListElement>(null);
-  const desktop = useMediaQuery(`${DESKTOP} and ${MOTION_OK}`);
 
   useGSAP(
     () => {
-      const trackEl = track.current;
-      const pinEl = pin.current;
-      if (!trackEl || !pinEl) return;
+      const section = root.current;
+      if (!section) return;
+      const pin = section.querySelector<HTMLElement>(".journey-pin");
+      const frame = section.querySelector<HTMLElement>(".journey-window");
+      const track = section.querySelector<HTMLElement>(".journey-track");
+      if (!pin || !frame || !track) return;
 
       const mm = gsap.matchMedia();
-      mm.add(`${DESKTOP} and ${MOTION_OK}`, () => {
-        const distance = () =>
-          Math.max(0, trackEl.scrollWidth - (trackEl.parentElement?.clientWidth ?? 0));
 
-        gsap.to(trackEl, {
-          x: () => -distance(),
+      mm.add(`${DESKTOP} and ${MOTION_OK}`, () => {
+        frame.classList.add("is-driven");
+        const travel = () => Math.max(0, track.scrollWidth - frame.clientWidth);
+        gsap.from(".step", {
+          y: 28,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 85%", once: true },
+        });
+        gsap.to(track, {
+          x: () => -travel(),
           ease: "none",
           scrollTrigger: {
-            trigger: pinEl,
+            trigger: pin,
+            start: "top 18%",
+            end: () => `+=${travel()}`,
             pin: true,
-            scrub: 1,
-            start: "top top",
-            end: () => `+=${distance()}`,
+            scrub: 0.7,
             invalidateOnRefresh: true,
+            anticipatePin: 1,
           },
         });
-
-        let dragging = false;
-        let startX = 0;
-        let startScroll = 0;
-
-        const down = (event: PointerEvent) => {
-          if (event.pointerType === "touch") return;
-          dragging = true;
-          startX = event.clientX;
-          startScroll = getLenis()?.scroll ?? window.scrollY;
-          trackEl.setPointerCapture(event.pointerId);
-        };
-        const move = (event: PointerEvent) => {
-          if (!dragging) return;
-          const next = startScroll + (startX - event.clientX);
-          const lenis = getLenis();
-          if (lenis) lenis.scrollTo(next, { immediate: true });
-          else window.scrollTo(0, next);
-        };
-        const up = () => {
-          dragging = false;
-        };
-
-        trackEl.addEventListener("pointerdown", down);
-        trackEl.addEventListener("pointermove", move);
-        trackEl.addEventListener("pointerup", up);
-        trackEl.addEventListener("pointercancel", up);
-        return () => {
-          trackEl.removeEventListener("pointerdown", down);
-          trackEl.removeEventListener("pointermove", move);
-          trackEl.removeEventListener("pointerup", up);
-          trackEl.removeEventListener("pointercancel", up);
-        };
+        return () => frame.classList.remove("is-driven");
       });
+
+      mm.add(`(max-width: 1199px) and ${MOTION_OK}`, () => {
+        gsap.from(".step", {
+          x: 40,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 82%", once: true },
+        });
+      });
+
+      return () => mm.revert();
     },
     { scope: root },
   );
 
   return (
     <section className="journey" id="journey" ref={root} aria-label="Journey">
-      <div className="journey-pin" ref={pin}>
+      <div className="journey-pin">
         <div className="journey-head">
           <h2 className="kicker">(Journey)</h2>
           <p className="kicker">
             <span className="only-mobile">Swipe →</span>
-            <span className="only-desktop">Drag or scroll →</span>
+            <span className="only-desktop">Scroll →</span>
           </p>
         </div>
-        <div
-          className="journey-window"
-          tabIndex={desktop ? -1 : 0}
-          aria-label="Journey steps"
-        >
-          <ul className="journey-track" ref={track}>
+        <div className="journey-window" tabIndex={0} aria-label="Journey steps">
+          <ul className="journey-track">
             {JOURNEY.map((step) => (
               <li
                 className={"next" in step && step.next ? "step is-next" : "step"}

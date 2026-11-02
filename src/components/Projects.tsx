@@ -1,28 +1,21 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { PROJECTS, type Project } from "../content";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import { DESKTOP, gsap, useGSAP, MOTION_OK } from "../motion";
+import { appear, DESKTOP, gsap, useGSAP, MOTION_OK } from "../motion";
+import { claimPlayback, hasClip, releasePlayback, useProjectClip } from "../playback";
+import { ProjectPreview } from "./ProjectPreview";
 
 export function Projects() {
   const root = useRef<HTMLElement>(null);
+  const [hover, setHover] = useState<string | null>(null);
+  const desktop = useMediaQuery(`${DESKTOP} and ${MOTION_OK}`);
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        gsap.from(".project", {
-          y: 28,
-          duration: 0.7,
-          stagger: 0.06,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".project-list", start: "top 82%" },
-        });
-        gsap.from(".hairline", {
-          scaleX: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".hairline", start: "top 92%" },
-        });
+        const section = root.current;
+        if (section) appear(section, ".projects-head, .project-list");
       });
     },
     { scope: root },
@@ -36,23 +29,65 @@ export function Projects() {
       </div>
       <div className="project-list">
         {PROJECTS.map((project) => (
-          <ProjectRow key={project.index} project={project} />
+          <ProjectRow
+            key={project.slug}
+            project={project}
+            onHover={(active) =>
+              setHover((current) =>
+                active ? project.slug : current === project.slug ? null : current,
+              )
+            }
+          />
         ))}
         <div className="hairline" />
       </div>
       <p className="projects-hint">Tap a row to read the note.</p>
+      {desktop ? <ProjectPreview slug={hover} /> : null}
     </section>
   );
 }
 
-function ProjectRow({ project }: { project: Project }) {
+function ProjectRow({ project, onHover }: { project: Project; onHover: (active: boolean) => void }) {
   const row = useRef<HTMLElement>(null);
   const note = useRef<HTMLDivElement>(null);
+  const clip = useRef<HTMLVideoElement>(null);
   const play = useRef<(next: boolean) => void>(() => {});
   const [open, setOpen] = useState(false);
+  const [near, setNear] = useState(false);
   const desktop = useMediaQuery(DESKTOP);
+  const media = useProjectClip(!desktop && near ? project.slug : null);
+  const available = hasClip(media);
   const noteId = useId();
   const tags = project.tech === "—" ? "" : project.tech.replaceAll(", ", " · ");
+
+  useEffect(() => {
+    const el = row.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = clip.current;
+    if (!node || !near) return;
+    node.load();
+  }, [near]);
+
+  useEffect(() => {
+    const node = clip.current;
+    if (!node || desktop) return;
+    if (open) claimPlayback(node);
+    else releasePlayback(node);
+  }, [open, desktop, near, available]);
 
   useGSAP(
     (_context, contextSafe) => {
@@ -95,14 +130,22 @@ function ProjectRow({ project }: { project: Project }) {
 
   useEffect(() => {
     play.current(open);
-  }, [open]);
+  }, [open, available]);
 
   return (
     <article
       className={project.longName ? "project is-long" : "project"}
       ref={row}
-      onMouseEnter={() => desktop && setOpen(true)}
-      onMouseLeave={() => desktop && setOpen(false)}
+      onMouseEnter={() => {
+        if (!desktop) return;
+        setOpen(true);
+        onHover(true);
+      }}
+      onMouseLeave={() => {
+        if (!desktop) return;
+        setOpen(false);
+        onHover(false);
+      }}
     >
       <div
         className="project-main"
@@ -111,13 +154,24 @@ function ProjectRow({ project }: { project: Project }) {
         aria-expanded={open}
         aria-controls={noteId}
         onClick={() => {
-          if (!desktop) setOpen((value) => !value);
+          if (desktop) return;
+          setNear(true);
+          setOpen((value) => !value);
         }}
-        onFocus={() => desktop && setOpen(true)}
-        onBlur={() => desktop && setOpen(false)}
+        onFocus={() => {
+          if (!desktop) return;
+          setOpen(true);
+          onHover(true);
+        }}
+        onBlur={() => {
+          if (!desktop) return;
+          setOpen(false);
+          onHover(false);
+        }}
         onKeyDown={(event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
+            setNear(true);
             setOpen((value) => !value);
           }
         }}
@@ -145,6 +199,21 @@ function ProjectRow({ project }: { project: Project }) {
         </span>
       </div>
       <div className="note" id={noteId} ref={note} aria-hidden={!open}>
+        {desktop || !available ? null : (
+          <div className="note-video">
+            <video
+              ref={clip}
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-hidden="true"
+            >
+              {media.webm ? <source src={`/${project.slug}.webm`} type="video/webm" /> : null}
+              {media.mp4 ? <source src={`/${project.slug}.mp4`} type="video/mp4" /> : null}
+            </video>
+          </div>
+        )}
         <p className="note-copy" data-ink="strong">
           {project.note}
         </p>

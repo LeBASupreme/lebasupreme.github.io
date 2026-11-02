@@ -14,6 +14,7 @@ export const MARQUEE = [
 
 export type Project = {
   index: string;
+  slug: string;
   name: string;
   role: string;
   tech: string;
@@ -26,6 +27,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     index: "01",
+    slug: "wimbee",
     name: "WIMBEE",
     role: "Full-stack internship",
     tech: "MCP, OAuth 2.1, PostGIS",
@@ -35,6 +37,7 @@ export const PROJECTS: Project[] = [
   },
   {
     index: "02",
+    slug: "timeora",
     name: "Timeora",
     role: "Pre-incubated project",
     tech: "LangChain, n8n, FastAPI",
@@ -44,40 +47,44 @@ export const PROJECTS: Project[] = [
   },
   {
     index: "03",
+    slug: "invoiceme",
     name: "InvoiceMe",
     role: "AI invoicing micro-SaaS",
     tech: "AI, SaaS",
-    year: "—",
-    mobileMeta: "AI invoicing micro-SaaS",
+    year: "2025",
+    mobileMeta: "AI invoicing micro-SaaS · 2025",
     note: "An AI invoicing micro-SaaS.",
   },
   {
     index: "04",
+    slug: "fast-injection-detector",
     name: "fast-injection-detector",
     role: "Open-source tool",
     tech: "LLM security",
-    year: "—",
-    mobileMeta: "Open-source · LLM security",
+    year: "In progress",
+    mobileMeta: "Open-source · In progress",
     note: "An open-source tool focused on LLM security.",
     longName: true,
   },
   {
     index: "05",
+    slug: "onstage",
     name: "OnStage",
-    role: "GitHub repo",
-    tech: "—",
-    year: "—",
-    mobileMeta: "GitHub repo",
-    note: "A project published on GitHub.",
+    role: "Events app",
+    tech: "SaaS",
+    year: "2025",
+    mobileMeta: "Events app · SaaS · 2025",
+    note: "An events SaaS.",
   },
   {
     index: "06",
-    name: "quizmusic",
-    role: "GitHub repo",
-    tech: "—",
-    year: "—",
-    mobileMeta: "GitHub repo",
-    note: "A project published on GitHub.",
+    slug: "ww1-center",
+    name: "WW1 Center",
+    role: "Museum website",
+    tech: "React, Node, Stripe",
+    year: "2026",
+    mobileMeta: "Museum website · 2026",
+    note: "A website for the WW1 Remembrance Centre in Portsmouth, with a scroll walkthrough, a shop, donations and an admin panel.",
   },
 ];
 
@@ -116,4 +123,4 @@ export const JOURNEY = [
 ] as const;
 
 export const ABOUT =
-  "I’m an engineering student at EFREI Paris. I mostly build back-ends and AI agents, and I love it when an interface moves just right. This summer I interned at WIMBEE.";
+  "I’m Aziz, a full-stack developer in Paris. I build SaaS products, apps and AI agents that actually ship, from FastAPI backends to LangChain and MCP agents that automate real work. Third-year student at EFREI, looking for an AI internship from April 2027. Off screen, I DJ and play padel.";

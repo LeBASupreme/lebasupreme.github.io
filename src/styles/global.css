@@ -20,7 +20,7 @@
   --card-h-m: calc(var(--space-32) + var(--space-20) + var(--space-3));
   --mascot-m: calc(var(--space-32) * 3 + var(--space-5));
   --col-role: calc(var(--space-32) * 2 + var(--space-1));
-  --col-year: calc(var(--space-10) + var(--space-8) - var(--space-1) / 2);
+  --col-year: calc(var(--space-24) + var(--space-4));
   --index-col: var(--space-20);
   --note-measure: calc(var(--space-32) * 5);
   --aside-w: calc(var(--space-32) * 2 + var(--space-20) + var(--space-1));
@@ -150,7 +150,7 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  height: 100dvh;
   overflow: hidden;
   padding: var(--gutter);
   background: var(--surface-brand);
@@ -177,6 +177,26 @@ img {
   display: none;
 }
 
+.hero-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  color: var(--text-on-brand);
+}
+
+.hero-social svg {
+  width: var(--space-6);
+  height: var(--space-6);
+}
+
 .hero-cta {
   display: inline-flex;
   align-items: center;
@@ -194,17 +214,25 @@ img {
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-height: calc(var(--space-32) * 4 + var(--space-16));
+  min-height: 0;
 }
 
 .hero-title {
   position: relative;
   z-index: 1;
   order: 3;
+  max-width: 100%;
+  padding-bottom: var(--space-2);
   font-weight: var(--font-weight-black);
-  font-size: var(--font-size-display-md);
+  font-size: var(--font-size-display-sm);
   line-height: var(--font-line-height-tighter);
   letter-spacing: var(--font-letter-spacing-tighter);
+}
+
+@media (min-width: 390px) {
+  .hero-title {
+    font-size: var(--font-size-display-md);
+  }
 }
 
 .bubble {
@@ -221,29 +249,70 @@ img {
   line-height: var(--font-line-height-normal);
 }
 
-.mascot-parallax {
+.mascot {
+  position: relative;
   z-index: 2;
   order: 2;
   align-self: flex-end;
-  height: var(--mascot-m);
+  flex: 0 1 auto;
+  aspect-ratio: 0.88;
+  width: calc(min(100%, var(--mascot-m)) * 0.88);
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
   margin-top: auto;
-  margin-bottom: calc(var(--space-8) * -1);
+  margin-bottom: calc(var(--space-6) * -1);
+  overflow: hidden;
 }
 
-.mascot-cursor,
-.mascot-float,
-.mascot-float img,
-.contact-mascot,
-.contact-mascot img {
+.mascot img,
+.mascot video {
   height: 100%;
 }
 
-.mascot-float img,
-.contact-mascot img {
+.mascot img {
   display: block;
-  width: auto;
+  width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
   pointer-events: none;
   user-select: none;
+}
+
+.contact-mascot {
+  flex: none;
+  width: calc(var(--space-24) + var(--space-4));
+  height: var(--contact-mascot-m);
+}
+
+.contact-mascot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  user-select: none;
+}
+
+.mascot img.is-covered {
+  visibility: hidden;
+}
+
+.mascot video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mascot video.is-on {
+  opacity: 1;
 }
 
 .hero-aside {
@@ -391,6 +460,7 @@ img {
 
 .project-name {
   grid-area: name;
+  overflow-wrap: anywhere;
   font-weight: var(--font-weight-extrabold);
   font-size: var(--font-size-3xl);
   line-height: var(--font-line-height-snug);
@@ -436,6 +506,36 @@ img {
   overflow: hidden;
 }
 
+.note-video {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-brand);
+}
+
+.note-video video,
+.project-float video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-float {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: calc(var(--space-10) * 9);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-brand);
+  pointer-events: none;
+}
+
 .note-copy {
   padding-top: var(--space-1);
   font-size: var(--font-size-base);
@@ -476,7 +576,11 @@ img {
   overflow-x: auto;
   padding: 0 var(--gutter) var(--space-2);
   scroll-snap-type: x mandatory;
-  scrollbar-color: var(--border-strong) transparent;
+  scrollbar-width: none;
+}
+
+.journey-window::-webkit-scrollbar {
+  display: none;
 }
 
 .journey-track {
@@ -566,9 +670,8 @@ img {
   letter-spacing: var(--font-letter-spacing-tighter);
 }
 
-.contact-mascot {
-  flex: none;
-  height: var(--contact-mascot-m);
+.contact-lead h2 {
+  min-width: 0;
 }
 
 .contact-mail {
@@ -626,8 +729,36 @@ img {
     padding-left: var(--gutter-desktop);
   }
 
+  .hero-stage {
+    display: block;
+  }
+
   .hero-title {
-    font-size: var(--font-size-display-lg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    max-width: 100%;
+    font-size: var(--font-size-display-md);
+  }
+
+  .mascot {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: auto;
+    max-width: 46%;
+    height: 72%;
+    margin: 0;
+  }
+
+  .bubble {
+    position: absolute;
+    top: var(--space-6);
+    right: 0;
+    left: auto;
+    margin: 0;
   }
 
   .journey-head,
@@ -669,15 +800,20 @@ img {
     bottom: 0;
     left: 0;
     order: 0;
+    width: 62%;
     margin: 0;
-    font-size: var(--hero-display);
+    font-size: var(--font-size-display-lg);
   }
 
-  .mascot-parallax {
+  .mascot {
     position: absolute;
+    right: auto;
     bottom: -2%;
     left: 34%;
     order: 0;
+    flex: none;
+    width: auto;
+    max-width: none;
     height: 84%;
     margin: 0;
   }
@@ -685,6 +821,7 @@ img {
   .bubble {
     position: absolute;
     top: 8%;
+    right: auto;
     left: 57%;
     order: 0;
     margin: 0;
@@ -862,10 +999,13 @@ img {
   }
 
   .journey-window {
-    overflow: hidden;
+    overflow-x: auto;
     padding: 0;
-    scroll-snap-type: none;
-    cursor: grab;
+    cursor: auto;
+  }
+
+  .journey-window.is-driven {
+    overflow: hidden;
   }
 
   .journey-track {
@@ -941,6 +1081,7 @@ img {
     position: absolute;
     top: 0;
     right: 0;
+    width: calc(var(--space-32) + var(--space-10) + var(--space-2));
     height: var(--contact-mascot);
   }
 
@@ -967,6 +1108,12 @@ img {
 
   .footer-link {
     display: inline;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-title {
+    font-size: var(--hero-display);
   }
 }
 
