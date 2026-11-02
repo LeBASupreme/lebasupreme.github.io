@@ -1,0 +1,150 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-navy-50: #f5f7fb;
+  --color-navy-100: #e9edf5;
+  --color-navy-200: #d2d9e8;
+  --color-navy-300: #aeb9d4;
+  --color-navy-400: #8494bc;
+  --color-navy-500: #5a6fa0;
+  --color-navy-600: #3a5088;
+  --color-navy-700: #22396f;
+  --color-navy-800: #162a58;
+  --color-navy-900: #0d1c42;
+  --color-navy-950: #010736;
+  --color-navy-1000: #00031f;
+  --color-cream-0: #ffffff;
+  --color-cream-50: #fffcf3;
+  --color-cream-100: #fef8e6;
+  --color-cream-200: #fcf1d0;
+  --color-cream-300: #f3e2b0;
+  --color-cream-400: #e6ce8c;
+  --color-cream-500: #cfb36a;
+  --color-cream-600: #a88e4d;
+  --color-cream-700: #7d6936;
+  --color-cream-800: #534523;
+  --color-cream-900: #2e2613;
+  --color-electric-100: #e6ecff;
+  --color-electric-300: #8aa6ff;
+  --color-electric-500: #2453ff;
+  --color-electric-600: #1a3fe0;
+  --color-electric-700: #1431b3;
+  --color-brand-abyss: #010736; /** Palette ColorHunt */
+  --color-brand-navy: #0d1c42;
+  --color-brand-blue: #22396f;
+  --color-brand-cream: #fcf1d0;
+  --color-success-300: #6fd3a8;
+  --color-success-700: #1a6e4c;
+  --color-warning-300: #f5c26b;
+  --color-warning-700: #7f5300;
+  --color-danger-300: #f59a9a;
+  --color-danger-700: #a81f1f;
+  --color-info-300: #8eb6ff;
+  --color-info-700: #2350bf;
+  --color-alpha-navy-80: rgba(1, 7, 54, 0.8); /** Overlay */
+  --color-alpha-cream-80: rgba(252, 241, 208, 0.8);
+  --font-family-sans: Archivo;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 40px;
+  --font-size-5xl: 56px;
+  --font-size-display-sm: 72px;
+  --font-size-display-md: 96px;
+  --font-size-display-lg: 128px;
+  --font-size-display-xl: 176px;
+  --font-line-height-tighter: 0.9;
+  --font-line-height-tight: 1;
+  --font-line-height-snug: 1.15;
+  --font-line-height-normal: 1.5;
+  --font-line-height-relaxed: 1.7;
+  --font-letter-spacing-tightest: -0.05em;
+  --font-letter-spacing-tighter: -0.04em;
+  --font-letter-spacing-tight: -0.02em;
+  --font-letter-spacing-normal: 0em;
+  --font-letter-spacing-wide: 0.08em;
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --duration-instant: 0.1s;
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.7s;
+  --duration-slower: 1s;
+  --duration-cinematic: 1.6s;
+  --easing-power2-out: cubic-bezier(0.25, 0.46, 0.45, 0.94); /** GSAP power2.out */
+  --easing-power3-out: cubic-bezier(0.215, 0.61, 0.355, 1); /** GSAP power3.out */
+  --easing-power4-out: cubic-bezier(0.165, 0.84, 0.44, 1); /** GSAP power4.out */
+  --easing-expo-out: cubic-bezier(0.19, 1, 0.22, 1); /** GSAP expo.out */
+  --easing-power3-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); /** GSAP power3.inOut */
+  --easing-power2-in: cubic-bezier(0.55, 0.085, 0.68, 0.53); /** GSAP power2.in */
+  --radius-control: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-pill: var(--radius-full);
+  --typography-display-xl: var(--font-weight-black) var(--font-size-display-xl)/var(--font-line-height-tighter) var(--font-family-sans);
+  --typography-display-lg: var(--font-weight-black) var(--font-size-display-lg)/var(--font-line-height-tight) var(--font-family-sans);
+  --typography-display-md: var(--font-weight-black) var(--font-size-display-md)/var(--font-line-height-tight) var(--font-family-sans);
+  --typography-display-sm: var(--font-weight-extrabold) var(--font-size-display-sm)/var(--font-line-height-tight) var(--font-family-sans);
+  --typography-heading-1: var(--font-weight-extrabold) var(--font-size-5xl)/var(--font-line-height-snug) var(--font-family-sans);
+  --typography-heading-2: var(--font-weight-extrabold) var(--font-size-4xl)/var(--font-line-height-snug) var(--font-family-sans);
+  --typography-heading-3: var(--font-weight-extrabold) var(--font-size-3xl)/var(--font-line-height-snug) var(--font-family-sans);
+  --typography-heading-4: var(--font-weight-bold) var(--font-size-2xl)/var(--font-line-height-snug) var(--font-family-sans);
+  --typography-body-lg: var(--font-weight-regular) var(--font-size-lg)/var(--font-line-height-relaxed) var(--font-family-sans);
+  --typography-body: var(--font-weight-regular) var(--font-size-base)/var(--font-line-height-normal) var(--font-family-sans);
+  --typography-body-sm: var(--font-weight-regular) var(--font-size-sm)/var(--font-line-height-normal) var(--font-family-sans);
+  --typography-caption: var(--font-weight-medium) var(--font-size-xs)/var(--font-line-height-normal) var(--font-family-sans);
+  --typography-overline: var(--font-weight-semibold) var(--font-size-xs)/var(--font-line-height-normal) var(--font-family-sans);
+  --text-strong: var(--color-navy-950);
+  --text-muted: var(--color-navy-600);
+  --text-on-brand: var(--color-cream-50);
+  --text-accent: var(--color-electric-600);
+  --surface-page: var(--color-cream-50);
+  --surface-raised: var(--color-cream-0);
+  --surface-sunken: var(--color-cream-100);
+  --surface-brand: var(--color-electric-500);
+  --surface-overlay: var(--color-alpha-cream-80);
+  --border-subtle: var(--color-cream-300);
+  --border-strong: var(--color-navy-500);
+  --accent-default: var(--color-electric-500);
+  --accent-hover: var(--color-electric-700);
+  --status-success: var(--color-success-700);
+  --status-warning: var(--color-warning-700);
+  --status-danger: var(--color-danger-700);
+  --status-info: var(--color-info-700);
+  --motion-duration-hover: var(--duration-fast);
+  --motion-duration-reveal: var(--duration-slow);
+  --motion-duration-hero: var(--duration-cinematic);
+  --motion-ease-enter: var(--easing-power3-out);
+  --motion-ease-exit: var(--easing-power2-in);
+  --motion-ease-move: var(--easing-power3-in-out);
+  --motion-ease-hero: var(--easing-expo-out);
+}

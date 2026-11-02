@@ -1,0 +1,128 @@
+{
+  "text": {
+    "strong": {
+      "$value": "{color.navy.950}",
+      "$type": "color"
+    },
+    "muted": {
+      "$value": "{color.navy.600}",
+      "$type": "color"
+    },
+    "on-brand": {
+      "$value": "{color.cream.50}",
+      "$type": "color"
+    },
+    "accent": {
+      "$value": "{color.electric.600}",
+      "$type": "color"
+    }
+  },
+  "surface": {
+    "page": {
+      "$value": "{color.cream.50}",
+      "$type": "color"
+    },
+    "raised": {
+      "$value": "{color.cream.0}",
+      "$type": "color"
+    },
+    "sunken": {
+      "$value": "{color.cream.100}",
+      "$type": "color"
+    },
+    "brand": {
+      "$value": "{color.electric.500}",
+      "$type": "color"
+    },
+    "overlay": {
+      "$value": "{color.alpha.cream-80}",
+      "$type": "color"
+    }
+  },
+  "border": {
+    "subtle": {
+      "$value": "{color.cream.300}",
+      "$type": "color"
+    },
+    "strong": {
+      "$value": "{color.navy.500}",
+      "$type": "color"
+    }
+  },
+  "accent": {
+    "default": {
+      "$value": "{color.electric.500}",
+      "$type": "color"
+    },
+    "hover": {
+      "$value": "{color.electric.700}",
+      "$type": "color"
+    }
+  },
+  "status": {
+    "success": {
+      "$value": "{color.success.700}",
+      "$type": "color"
+    },
+    "warning": {
+      "$value": "{color.warning.700}",
+      "$type": "color"
+    },
+    "danger": {
+      "$value": "{color.danger.700}",
+      "$type": "color"
+    },
+    "info": {
+      "$value": "{color.info.700}",
+      "$type": "color"
+    }
+  },
+  "radius": {
+    "control": {
+      "$value": "{radius.md}",
+      "$type": "dimension"
+    },
+    "card": {
+      "$value": "{radius.lg}",
+      "$type": "dimension"
+    },
+    "pill": {
+      "$value": "{radius.full}",
+      "$type": "dimension"
+    }
+  },
+  "motion": {
+    "duration": {
+      "hover": {
+        "$value": "{duration.fast}",
+        "$type": "duration"
+      },
+      "reveal": {
+        "$value": "{duration.slow}",
+        "$type": "duration"
+      },
+      "hero": {
+        "$value": "{duration.cinematic}",
+        "$type": "duration"
+      }
+    },
+    "ease": {
+      "enter": {
+        "$value": "{easing.power3-out}",
+        "$type": "cubicBezier"
+      },
+      "exit": {
+        "$value": "{easing.power2-in}",
+        "$type": "cubicBezier"
+      },
+      "move": {
+        "$value": "{easing.power3-in-out}",
+        "$type": "cubicBezier"
+      },
+      "hero": {
+        "$value": "{easing.expo-out}",
+        "$type": "cubicBezier"
+      }
+    }
+  }
+}

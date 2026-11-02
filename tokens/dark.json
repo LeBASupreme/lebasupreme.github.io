@@ -1,0 +1,128 @@
+{
+  "text": {
+    "strong": {
+      "$value": "{color.cream.200}",
+      "$type": "color"
+    },
+    "muted": {
+      "$value": "{color.navy.300}",
+      "$type": "color"
+    },
+    "on-brand": {
+      "$value": "{color.navy.950}",
+      "$type": "color"
+    },
+    "accent": {
+      "$value": "{color.electric.300}",
+      "$type": "color"
+    }
+  },
+  "surface": {
+    "page": {
+      "$value": "{color.navy.950}",
+      "$type": "color"
+    },
+    "raised": {
+      "$value": "{color.navy.900}",
+      "$type": "color"
+    },
+    "sunken": {
+      "$value": "{color.navy.1000}",
+      "$type": "color"
+    },
+    "brand": {
+      "$value": "{color.cream.200}",
+      "$type": "color"
+    },
+    "overlay": {
+      "$value": "{color.alpha.navy-80}",
+      "$type": "color"
+    }
+  },
+  "border": {
+    "subtle": {
+      "$value": "{color.navy.800}",
+      "$type": "color"
+    },
+    "strong": {
+      "$value": "{color.navy.500}",
+      "$type": "color"
+    }
+  },
+  "accent": {
+    "default": {
+      "$value": "{color.cream.200}",
+      "$type": "color"
+    },
+    "hover": {
+      "$value": "{color.cream.50}",
+      "$type": "color"
+    }
+  },
+  "status": {
+    "success": {
+      "$value": "{color.success.300}",
+      "$type": "color"
+    },
+    "warning": {
+      "$value": "{color.warning.300}",
+      "$type": "color"
+    },
+    "danger": {
+      "$value": "{color.danger.300}",
+      "$type": "color"
+    },
+    "info": {
+      "$value": "{color.info.300}",
+      "$type": "color"
+    }
+  },
+  "radius": {
+    "control": {
+      "$value": "{radius.md}",
+      "$type": "dimension"
+    },
+    "card": {
+      "$value": "{radius.lg}",
+      "$type": "dimension"
+    },
+    "pill": {
+      "$value": "{radius.full}",
+      "$type": "dimension"
+    }
+  },
+  "motion": {
+    "duration": {
+      "hover": {
+        "$value": "{duration.fast}",
+        "$type": "duration"
+      },
+      "reveal": {
+        "$value": "{duration.slow}",
+        "$type": "duration"
+      },
+      "hero": {
+        "$value": "{duration.cinematic}",
+        "$type": "duration"
+      }
+    },
+    "ease": {
+      "enter": {
+        "$value": "{easing.power3-out}",
+        "$type": "cubicBezier"
+      },
+      "exit": {
+        "$value": "{easing.power2-in}",
+        "$type": "cubicBezier"
+      },
+      "move": {
+        "$value": "{easing.power3-in-out}",
+        "$type": "cubicBezier"
+      },
+      "hero": {
+        "$value": "{easing.expo-out}",
+        "$type": "cubicBezier"
+      }
+    }
+  }
+}
