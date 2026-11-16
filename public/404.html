@@ -4,8 +4,15 @@
     <meta charset="utf-8" />
     <title>Aziz Ben Amor</title>
     <link rel="canonical" href="https://lebasupreme.github.io/" />
+    <!-- GitHub Pages serves this for /terminal. Keep the path, then load the app. -->
     <script>
-      location.replace("/");
+      (function () {
+        try {
+          var path = location.pathname + location.search + location.hash;
+          if (path !== "/") sessionStorage.setItem("spa-redirect", path);
+        } catch (e) {}
+        location.replace("/");
+      })();
     </script>
     <meta http-equiv="refresh" content="0; url=/" />
   </head>

@@ -2,6 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var redirect = sessionStorage.getItem("spa-redirect");
+          sessionStorage.removeItem("spa-redirect");
+          if (!redirect || redirect.charAt(0) !== "/" || redirect.indexOf("//") !== -1) return;
+          var path = redirect.split("?")[0].split("#")[0];
+          if (path !== "/terminal" && path !== "/terminal/") return;
+          history.replaceState(null, "", redirect);
+        } catch (e) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
